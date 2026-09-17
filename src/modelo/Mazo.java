@@ -1,64 +1,78 @@
 package modelo;
 
 import ed.tda.Arreglo;
+import ed.tda.Pila;
 import java.util.Random;
 
 /**
- * Clase Mazo que representa las 52 cartas francesas.
- * Implementado internamente sobre el TDA Arreglo propio.
+ * Clase Mazo reimplementada utilizando el TDA Pila (LIFO) propio.
+ * Administra los 52 naipes franceses requeridos por el proyecto.
  */
 public class Mazo {
-    private Arreglo<Carta> cartas;
-    private int cartasRepartidas;
+    private Pila<Carta> cartas;
 
     public Mazo() {
-        this.cartas = new Arreglo<>(52);
-        this.cartasRepartidas = 0;
-        inicializarMazo();
+        // Un mazo estándar francés consta de 52 cartas
+        this.cartas = new Pila<>(52);
+        inicializarYMezclar();
     }
 
     /**
-     * Carga los 52 naipes franceses en el TDA Arreglo.
-     */
-    private void inicializarMazo() {
-        String[] palos = {"Trébol", "Pica", "Corazones", "Diamantes"};
-        for (String palo : palos) {
-            for (int valor = 1; valor <= 13; valor++) {
-                cartas.insertar(new Carta(palo, valor, true));
-            }
-        }
-    }
-
-    /**
-     * Mezcla el mazo de forma aleatoria usando el algoritmo de Fisher-Yates.
+     * Carga los 52 naipes franceses en un Arreglo auxiliar, aplica el
+     * algoritmo de Fisher-Yates para barajar y los apila en la Pila.
      */
     public void mezclar() {
+        inicializarYMezclar();
+    }
+
+    private void inicializarYMezclar() {
+        Arreglo<Carta> mazoTemporal = new Arreglo<>(52);
+        String[] palos = {"Trébol", "Pica", "Corazones", "Diamantes"};
+
+        // Genera los 52 naipes (4 palos, valores del 1 al 13) con estado disponible
+        for (String palo : palos) {
+            for (int valor = 1; valor <= 13; valor++) {
+                mazoTemporal.insertar(new Carta(palo, valor, true));
+            }
+        }
+
         Random rand = new Random();
-        int n = cartas.longitud();
+        int n = mazoTemporal.longitud();
         for (int i = n - 1; i > 0; i--) {
             int j = rand.nextInt(i + 1);
-            cartas.intercambiar(i, j);
+            mazoTemporal.intercambiar(i, j);
+        }
+
+        this.cartas = new Pila<>(52);
+        for (int i = 0; i < mazoTemporal.longitud(); i++) {
+            this.cartas.apilar(mazoTemporal.obtener(i));
         }
     }
 
     /**
-     * Extrae un naipe del mazo si hay disponibles y cambia su estado a no disponible.
+     * Extrae la carta ubicada en la cima de la Pila, cambia su estado a no disponible
+     * y la retorna para la ronda actual.
      */
     public Carta sacarCarta() {
         if (tieneCartasDisponibles()) {
-            Carta carta = cartas.obtener(cartasRepartidas);
-            carta.setDisponible(false);
-            cartasRepartidas++;
+            Carta carta = cartas.desapilar();
+            carta.setDisponible(false); // Actualiza el estado a "no disponible" (disponible = false)
             return carta;
         }
-        return null;
+        return null; // Retorna null si el mazo se ha agotado
     }
 
+    /**
+     * Consulta si la Pila aún contiene naipes.
+     */
     public boolean tieneCartasDisponibles() {
-        return cartasRepartidas < cartas.longitud();
+        return !cartas.estaVacia();
     }
 
+    /**
+     * Retorna la cantidad de naipes restantes en la Pila del mazo.
+     */
     public int cartasRestantes() {
-        return cartas.longitud() - cartasRepartidas;
+        return cartas.tamanio();
     }
 }
