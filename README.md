@@ -27,7 +27,7 @@ Actualmente se encuentran implementadas y documentadas las estructuras base y la
 * **Atributos:** Contiene el `palo` (Trébol, Pica, Corazones, Diamantes), el `valor` (1 a 13) y el estado de la carta (`disponible` o `no disponible`).
 
 ### 4. `modelo.Mazo`
-* **Cómo funciona:** Encapsula las 52 cartas francesas organizadas internamente mediante el `Arreglo<Carta>`.
+* **Cómo funciona:** Encapsula las 52 cartas francesas organizadas internamente mediante el `Pila<Carta>`.
 * **Funcionalidad clave:** 
   * `inicializarMazo()`: Genera las 52 combinaciones de cartas.
   * `mezclar()`: Implementa el algoritmo de **Fisher-Yates** aprovechando el método `intercambiar` del TDA Arreglo para barajar las cartas al azar.
@@ -84,6 +84,7 @@ juego-cartas/
 ├── run.sh                    # Script de compilación y ejecución en Linux
 ├── .gitignore
 └── README.md
+```
 
 ## Compilación y Ejecución
 
