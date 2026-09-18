@@ -94,7 +94,7 @@ juego-cartas/
 El proyecto cuenta con un script ejecutable para compilar y correr todo en un solo paso sin escribir comandos largos.
 
 #### Opción 1: Desde el Explorador de Archivos
-1. Abrí la carpeta del proyecto (`juego-cartas/`).
+1. Abrí la carpeta raiz del proyecto (`/EdD-ProyectoIntegradorI-2026-Grupo508`).
 2. Hacé **doble clic** sobre el archivo `run.bat`.
 
 #### Opción 2: Desde la Consola (CMD o PowerShell)
