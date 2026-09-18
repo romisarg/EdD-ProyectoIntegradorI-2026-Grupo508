@@ -6,8 +6,74 @@
 ---
 
 ##  Descripción General
-El proyecto consiste en la simulación de un juego de cartas de 4 jugadores que compiten durante varias rondas tomando cartas de un mazo de naipes franceses (52 cartas) ordenadas al azar. En cada ronda, los jugadores comparan sus cartas y el que obtiene la carta de mayor valor numérico se lleva las cartas de los demás y las guarda en su **pozo acumulador (Pila)**. En caso de empate en el valor máximo, cada jugador conserva su carta. Gana el jugador que obtenga el mayor puntaje al finalizar las rondas.
+El proyecto consiste en la simulación de un juego de cartas para 4 jugadores que compiten durante rondas tomando cartas de un mazo de naipes franceses (52 cartas) ordenadas al azar. En cada ronda, los jugadores comparan sus cartas y el que obtiene la carta de mayor valor numérico se lleva las cartas de los demás y las guarda en su **pozo acumulador (Pila)**. En caso de empate en el valor máximo, cada jugador conserva su carta. Gana el jugador que obtenga el mayor puntaje al finalizar las rondas.
 
+---
+## Mapa conceptual del juego:
+
+```text
+                         ┌─────────────────────┐
+                         │       PARTIDA       │
+                         └──────────┬──────────┘
+                                    │
+                    ┌───────────────┼───────────────┐
+                    │               │               │
+                    ▼               ▼               ▼
+             ┌────────────┐  ┌────────────┐  ┌────────────┐
+             │ 4 JUGADORES│  │    MAZO    │  │ 3 RONDAS   │
+             └─────┬──────┘  │ 52 CARTAS  │  └─────┬──────┘
+                   │         └─────┬──────┘        │
+                   │               │               │
+                   ▼               ▼               │
+              ┌─────────┐    ┌──────────┐          │
+              │  COLA   │    │  PILA    │          │
+              │  FIFO   │    │  MAZO    │          │
+              └────┬────┘    └────┬─────┘          │
+                   │              │                │
+                   │              ▼                │
+                   │       ┌──────────────┐        │
+                   └──────►│ CADA JUGADOR │◄───────┘
+                           │ RECIBE 1 CARTA│
+                           └──────┬───────┘
+                                  │
+                                  ▼
+                         ┌─────────────────┐
+                         │ COMPARAR VALORES│
+                         └────────┬────────┘
+                                  │
+                    ┌─────────────┴─────────────┐
+                    │                           │
+                    ▼                           ▼
+             ┌──────────────┐           ┌──────────────┐
+             │ HAY GANADOR  │           │    EMPATE    │
+             └──────┬───────┘           └──────┬───────┘
+                    │                          │
+                    ▼                          ▼
+          ┌──────────────────┐       ┌──────────────────┐
+          │ Gana la ronda y  │       │ Cada jugador     │
+          │ recibe las 4     │       │ conserva su      │
+          │ cartas           │       │ propia carta     │
+          └────────┬─────────┘       └────────┬─────────┘
+                   │                          │
+                   └────────────┬─────────────┘
+                                ▼
+                       ┌──────────────────┐
+                       │  POZO DEL        │
+                       │  JUGADOR (PILA)  │
+                       └────────┬─────────┘
+                                │
+                                ▼
+                       ┌──────────────────┐
+                       │ CALCULAR         │
+                       │ PUNTAJES FINALES │
+                       └────────┬─────────┘
+                                │
+                                ▼
+                       ┌──────────────────┐
+                       │ MOSTRAR GANADOR  │
+                       │ DE LA PARTIDA    │
+                       └──────────────────┘
+```
 ---
 
 ## Lo Que Ya Está Hecho y Cómo Funciona
@@ -33,9 +99,157 @@ Actualmente se encuentran implementadas y documentadas las estructuras base y la
   * `mezclar()`: Implementa el algoritmo de **Fisher-Yates** aprovechando el método `intercambiar` del TDA Arreglo para barajar las cartas al azar.
   * `sacarCarta()`: Entrega una carta del mazo y cambia su estado a no disponible (`disponible = false`).
 
+--- 
+
+# Descripción de las clases:
+
+## `ed.tda.Arreglo<T>`
+
+Es un TDA Arreglo genérico de tamaño fijo.
+
+Se utiliza como estructura auxiliar para almacenar elementos y acceder a ellos mediante índices.
+
+Entre sus operaciones se encuentran:
+
+* `insertar()`
+* `obtener()`
+* `modificar()`
+* `longitud()`
+* `capacidad()`
+* `estaVacio()`
+* `estaLleno()`
+* `intercambiar()`
+
+También se utiliza durante el proceso de mezcla del mazo.
+
 ---
 
-##  Lo Que Falta Implementar (Para el Resto del Equipo)
+## `ed.tda.Pila<T>`
+
+Implementa una estructura **LIFO (Last In, First Out)** utilizando el TDA `Arreglo`.
+
+Sus principales operaciones son:
+
+* `apilar()`
+* `desapilar()`
+* `verCima()`
+* `estaVacia()`
+* `estaLlena()`
+* `tamanio()`
+
+Se utiliza para:
+
+1. Administrar el mazo de cartas.
+2. Administrar el pozo de cartas de cada jugador.
+
+---
+
+## `ed.tda.Cola<T>`
+
+Implementa una estructura **FIFO (First In, First Out)**.
+
+Se utiliza para administrar el orden de los cuatro jugadores durante las rondas.
+
+Sus principales operaciones son:
+
+* `encolar()`
+* `desencolar()`
+* `verFrente()`
+* `estaVacia()`
+* `estaLlena()`
+* `tamanio()`
+
+---
+
+## `modelo.Carta`
+
+Representa una carta individual.
+
+Contiene:
+
+```text
+palo
+valor
+disponible
+```
+
+Además, permite consultar y modificar el estado de disponibilidad de la carta.
+
+---
+
+## `modelo.Mazo`
+
+Representa el mazo francés de 52 cartas.
+
+Sus principales responsabilidades son:
+
+* Crear las 52 cartas.
+* Mezclarlas aleatoriamente.
+* Administrarlas mediante una Pila.
+* Entregar cartas durante las rondas.
+* Marcar las cartas entregadas como no disponibles.
+* Informar cuántas cartas quedan disponibles.
+
+---
+
+## `modelo.Jugador`
+
+Representa a cada participante.
+
+Contiene:
+
+```text
+nombre
+apellido
+edad
+pozo
+```
+
+El `pozo` es una `Pila<Carta>` donde se almacenan las cartas que el jugador obtiene durante las rondas.
+
+También permite:
+
+* Consultar sus datos.
+* Recibir cartas.
+* Calcular su puntaje final.
+
+---
+
+## `juego.ControladorJuego`
+
+Es la clase encargada de controlar la lógica principal de la partida.
+
+Se ocupa de:
+
+* Ejecutar las rondas.
+* Obtener los jugadores de la Cola.
+* Solicitar cartas al Mazo.
+* Comparar las cartas.
+* Determinar el ganador de cada ronda.
+* Entregar las cartas correspondientes.
+* Resolver empates.
+* Calcular los puntajes finales.
+* Mostrar los resultados.
+
+---
+
+## `main.Principal`
+
+Es el punto de entrada del programa.
+
+Se encarga de:
+
+* Mostrar el menú inicial.
+* Registrar a los cuatro jugadores.
+* Crear el mazo.
+* Crear la Cola de jugadores.
+* Crear el `ControladorJuego`.
+* Iniciar la partida.
+* Preguntar si se desea jugar nuevamente.
+
+---
+
+##  Lo Que Falta Implementar (Para el Resto del Equipo) --- listo🫣?
 
 Para completar el desarrollo del programa de acuerdo a las consignas de la cátedra, restan por implementar los siguientes módulos:
 
@@ -72,22 +286,21 @@ juego-cartas/
 │   │   └── tda/
 │   │       ├── Arreglo.java  # [HECHO] TDA Arreglo estático genérico
 │   │       ├── Pila.java     # [HECHO] TDA Pila basado en TDA Arreglo
-│   │       └── Cola.java     # [PENDIENTE] TDA Cola para Turnos
+│   │       └── Cola.java     # [hecho] TDA Cola para Turnos
 │   ├── modelo/
 │   │   ├── Carta.java        # [HECHO] Entidad Carta con estado
 │   │   ├── Mazo.java         # [HECHO] Mazo de 52 cartas y barajado
-│   │   └── Jugador.java      # [PENDIENTE] Entidad Jugador con Pila propia
+│   │   └── Jugador.java      # [hecho] Entidad Jugador con Pila propia
 │   ├── juego/
-│   │   └── ControladorJuego.java # [PENDIENTE] Lógica de rondas y reglas
+│   │   └── ControladorJuego.java # [hecho] Lógica de rondas y reglas
 │   └── main/
-│       └── Principal.java    # [PENDIENTE] Punto de entrada del programa
+│       └── Principal.java    # [hecho] Punto de entrada del programa
 ├── run.sh                    # Script de compilación y ejecución en Linux
 ├── .gitignore
 └── README.md
 ```
 
 ## Compilación y Ejecución
-
 
 ### Ejecución en Windows (`run.bat`)
 
