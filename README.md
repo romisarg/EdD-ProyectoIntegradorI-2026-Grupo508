@@ -364,7 +364,7 @@ El script compila los archivos `.java` del proyecto y luego ejecuta la clase pri
 
 ## Estado actual del proyecto
 
-El funcionamiento principal del juego se encuentra implementado:
+En el funcionamiento principal del juego se encuentra implementado:
 
 * [x] TDA Arreglo
 * [x] TDA Pila
