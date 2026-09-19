@@ -89,37 +89,7 @@ Al finalizar las 3 rondas, se calcula el puntaje de cada jugador sumando los val
 
 Actualmente se encuentran implementadas las estructuras de datos y las clases necesarias para el funcionamiento del juego:
 
-### 1. `ed.tda.Arreglo<T>` (TDA Arreglo Genérico)
-```bash
-* **Cómo funciona:** Es una estructura de tamaño fijo que utiliza internamente un arreglo `Object[]` para almacenar elementos genéricos.
-* **Funcionalidad clave:** Ofrece inserción al final (`insertar`), acceso por índice mediante `obtener(i)`, modificación de elementos (`modificar`), verificación de estado (`estaVacio`, `estaLleno`) y el método `intercambiar(i, j)`, utilizado durante el proceso de barajado del mazo.
-```
-### 2. `ed.tda.Pila<T>` (TDA Pila Genérico)
-```bash
-* **Cómo funciona:** Implementación propia de una estructura LIFO (Last In, First Out) construida sobre la clase `Arreglo<T>`.
-* **Funcionalidad clave:** Permite apilar elementos en la cima (`apilar`), consultar el elemento superior (`verCima`) y desapilar (`desapilar`).
-* **Uso en el juego:** Se utiliza para representar tanto el **mazo de cartas** como el **pozo acumulador de cada jugador**.
-```
-### 3. `modelo.Carta`
-```bash
-* **Cómo funciona:** Modela un naipe individual del mazo francés.
-* **Atributos:** Contiene el `palo` (Trébol, Pica, Corazones, Diamantes), el `valor` (1 a 13) y el estado de la carta (`disponible` o `no disponible`).
-```
-### 4. `modelo.Mazo`
-```bash
-* **Cómo funciona:** Encapsula las 52 cartas francesas organizadas internamente mediante una `Pila<Carta>`.
-* **Funcionalidad clave:**
-
-  * `inicializarYMezclar()`: Genera las 52 cartas correspondientes a los cuatro palos y los valores del 1 al 13, y luego las mezcla.
-  * `mezclar()`: Permite volver a inicializar y mezclar el mazo utilizando el algoritmo de **Fisher-Yates**, aprovechando el método `intercambiar` del TDA Arreglo.
-  * `sacarCarta()`: Extrae una carta del mazo y cambia su estado a no disponible (`disponible = false`).
-  * `tieneCartasDisponibles()`: Permite verificar si quedan cartas en el mazo.
-  * `cartasRestantes()`: Indica la cantidad de cartas que quedan en el mazo.
-```
-
-# Descripción de las clases:
-
-## `ed.tda.Arreglo<T>`
+### `ed.tda.Arreglo<T>`
 
 Es un TDA Arreglo genérico de tamaño fijo.
 
@@ -139,7 +109,7 @@ Entre sus operaciones se encuentran:
 También se utiliza durante el proceso de mezcla del mazo.
 
 
-## `ed.tda.Pila<T>`
+### `ed.tda.Pila<T>`
 
 Implementa una estructura **LIFO (Last In, First Out)** utilizando el TDA `Arreglo`.
 
@@ -158,7 +128,7 @@ Se utiliza para:
 2. Administrar el pozo de cartas de cada jugador.
 
 
-## `ed.tda.Cola<T>`
+### `ed.tda.Cola<T>`
 
 Implementa una estructura **FIFO (First In, First Out)** utilizando el TDA `Arreglo`.
 
@@ -174,7 +144,7 @@ Sus principales operaciones son:
 * `tamanio()`
 
 
-## `modelo.Carta`
+### `modelo.Carta`
 
 Representa una carta individual del mazo francés.
 
@@ -193,7 +163,7 @@ El atributo `disponible` permite indicar si la carta continúa disponible en el 
 Además, permite consultar y modificar el estado de disponibilidad de la carta.
 
 
-## `modelo.Mazo`
+### `modelo.Mazo`
 
 Representa el mazo francés de 52 cartas.
 
@@ -211,7 +181,7 @@ Para generar las cartas se utilizan los cuatro palos y los valores del 1 al 13.
 El barajado se realiza mediante el algoritmo **Fisher-Yates**.
 
 
-## `modelo.Jugador`
+### `modelo.Jugador`
 
 Representa a cada participante de la partida.
 
@@ -233,7 +203,7 @@ También permite:
 * Calcular su puntaje final sumando los valores de las cartas acumuladas.
 
 
-## `juego.ControladorJuego`
+### `juego.ControladorJuego`
 
 Es la clase encargada de controlar la lógica principal de la partida.
 
@@ -251,7 +221,7 @@ Se ocupa de:
 * Mostrar los resultados de la partida.
 
 
-## `main.Principal`
+### `main.Principal`
 
 Es el punto de entrada del programa.
 
