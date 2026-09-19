@@ -1,4 +1,4 @@
-# Proyecto Integrador I - Juego de Cartas
+# 🃏 Proyecto Integrador I - Juego de Cartas
 
 * **Asignatura:** Estructuras de Datos - Ciclo 2026 - 2do Cuatrimestre
 * **Carreras:** Ingeniería Informática / Licenciatura en Sistemas
@@ -112,7 +112,7 @@ TDA Arreglo genérico de tamaño fijo. Es la base sobre la que se construyen la 
 
 **Operaciones:** `insertar()` · `obtener()` · `modificar()` · `longitud()` · `capacidad()` · `estaVacio()` · `estaLleno()` · `intercambiar()`
 
-### `ed.tda.Pila<T>`
+### `➖ ed.tda.Pila<T>`
 ![paquete](https://img.shields.io/badge/paquete-ed.tda-2f81f7)
 
 Estructura **LIFO** (Last In, First Out) construida sobre `Arreglo<T>`.
@@ -121,28 +121,28 @@ Estructura **LIFO** (Last In, First Out) construida sobre `Arreglo<T>`.
 
 **Se usa para:** administrar el mazo de cartas y el pozo de cartas acumuladas de cada jugador.
 
-### `ed.tda.Cola<T>`
+### `➖ ed.tda.Cola<T>`
 ![paquete](https://img.shields.io/badge/paquete-ed.tda-2f81f7)
 
 Estructura **FIFO** (First In, First Out) construida sobre `Arreglo<T>`. Administra el orden de turno de los 4 jugadores durante las rondas.
 
 **Operaciones:** `encolar()` · `desencolar()` · `frente()` · `estaVacia()` · `estaLlena()` · `tamanio()`
 
-### `modelo.Carta`
+### `➖ modelo.Carta`
 ![paquete](https://img.shields.io/badge/paquete-modelo-fb8500)
 
 Representa una carta individual del mazo francés.
 
 **Atributos:** `palo` · `valor` (1 a 13) · `disponible`
 
-### `modelo.Mazo`
+### `➖ modelo.Mazo`
 ![paquete](https://img.shields.io/badge/paquete-modelo-fb8500)
 
 Representa el mazo francés de 52 cartas, administrado internamente con una `Pila<Carta>`.
 
 **Responsabilidades:** generar las 52 cartas (4 palos × valores del 1 al 13), mezclarlas con Fisher-Yates, entregarlas durante las rondas marcándolas como no disponibles, e informar cuántas quedan.
 
-### `modelo.Jugador`
+### `➖ modelo.Jugador`
 ![paquete](https://img.shields.io/badge/paquete-modelo-fb8500)
 
 Representa a cada participante de la partida.
@@ -151,12 +151,12 @@ Representa a cada participante de la partida.
 
 Puede recibir cartas (las apila en su pozo) y calcular su puntaje final sumando el valor de todo lo acumulado.
 
-### `juego.ControladorJuego`
+### `➖ juego.ControladorJuego`
 ![paquete](https://img.shields.io/badge/paquete-juego-2a9d8f)
 
 Controla la lógica principal de la partida: ejecuta las rondas tomando jugadores de la Cola y repartiéndoles cartas del Mazo, compara valores, resuelve empates, y calcula los puntajes finales.
 
-### `main.Principal`
+### `➖ main.Principal`
 ![paquete](https://img.shields.io/badge/paquete-main-6c757d)
 
 Punto de entrada del programa: registra a los jugadores, crea el mazo y la Cola de turnos, e inicia la partida.
@@ -224,5 +224,5 @@ El script compila los archivos `.java` del proyecto y luego ejecuta la clase pri
 ---
 
 <p align="center">
-  🃏 Proyecto Integrador I — Estructura de Datos · Comisión 5 · UNJU
+  ♦️ Proyecto Integrador I — Estructura de Datos · Comisión 5 · UNJU ♦️
 </p>
