@@ -1,8 +1,8 @@
-# Proyecto Integrador I - Juego de Cartas - EdD
+# Proyecto Integrador I - Juego de Cartas
 
 * **Asignatura:** Estructuras de Datos - Ciclo 2026 - 2do Cuatrimestre
-* **Institución:** Facultad de Ingeniería - Universidad Nacional de Jujuy (UNJu)
 * **Carreras:** Ingeniería Informática / Licenciatura en Sistemas
+* **Institución:** Facultad de Ingeniería - Universidad Nacional de Jujuy (UNJu)
 
 ---
 
@@ -247,25 +247,3 @@ El proyecto cuenta con un script ejecutable para compilar y correr todo en un so
 El script compila los archivos `.java` del proyecto y luego ejecuta la clase principal.
 
 ---
-
-## ✅ Estado actual del proyecto
-
-En el funcionamiento principal del juego se encuentra implementado:
-
-* [x] TDA Arreglo
-* [x] TDA Pila
-* [x] TDA Cola
-* [x] Clase Carta
-* [x] Clase Mazo
-* [x] Clase Jugador
-* [x] Controlador de la partida
-* [x] Registro de jugadores
-* [x] Mezcla aleatoria del mazo
-* [x] Desarrollo de 3 rondas
-* [x] Comparación de cartas
-* [x] Resolución de empates
-* [x] Acumulación de cartas
-* [x] Cálculo de puntajes
-* [x] Determinación del ganador o ganadores
-* [x] Opción de iniciar una nueva partida
-
