@@ -90,7 +90,7 @@ El trabajo  consiste en la simulación de un juego de cartas para 4 jugadores qu
 
 El proyecto se organiza en 4 paquetes, cada uno con una responsabilidad clara: las estructuras genéricas (`ed.tda`), las piezas del juego (`modelo`), el árbitro de la partida (`juego`) y el punto de entrada (`main`).
 
-### 📦 Resumen rápido
+### 📦 Resumen
 
 | Clase | Paquete | Rol en una frase |
 |---|---|---|
@@ -105,7 +105,7 @@ El proyecto se organiza en 4 paquetes, cada uno con una responsabilidad clara: l
 
 ---
 
-### `ed.tda.Arreglo<T>`
+### `➖ ed.tda.Arreglo<T>`
 ![paquete](https://img.shields.io/badge/paquete-ed.tda-2f81f7)
 
 TDA Arreglo genérico de tamaño fijo. Es la base sobre la que se construyen la Pila y la Cola, y también se usa como auxiliar durante el mezclado del mazo.
