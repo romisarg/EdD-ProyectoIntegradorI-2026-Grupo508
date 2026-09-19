@@ -10,13 +10,6 @@
 
 El trabajo  consiste en la simulación de un juego de cartas para 4 jugadores que compiten durante **3 rondas**, tomando cartas de un mazo de naipes franceses de 52 cartas mezcladas al azar.
 
-En cada ronda, los jugadores reciben una carta y comparan sus valores numéricos. El jugador que obtiene la carta de mayor valor se lleva las cartas de los demás y las guarda en su **pozo acumulador (Pila)**.
-
-En caso de empate en el valor máximo, cada jugador conserva su propia carta.
-
-Al finalizar las 3 rondas, se calcula el puntaje de cada jugador sumando los valores de las cartas acumuladas en su pozo. Gana el jugador o jugadores que obtengan el mayor puntaje.
-
-
 ## Mapa conceptual del juego:
 
 ```text
@@ -85,158 +78,90 @@ Al finalizar las 3 rondas, se calcula el puntaje de cada jugador sumando los val
 
 ---
 
-## ⚙️ Lo Que Ya Está Hecho y Cómo Funciona
+## ⚙️ Estructuras y clases utilizadas
 
-Actualmente se encuentran implementadas las estructuras de datos y las clases necesarias para el funcionamiento del juego:
+### * `ed.tda.Arreglo<T>`
+```bash
+TDA Arreglo genérico de tamaño fijo. Es la estructura base sobre la que se
+construyen la Pila y la Cola, y también se usa como auxiliar durante el
+mezclado del mazo.
 
-### `ed.tda.Arreglo<T>`
+**Operaciones:** `insertar()` · `obtener()` · `modificar()` · `longitud()` ·
+`capacidad()` · `estaVacio()` · `estaLleno()` · `intercambiar()`
+```
+### * `ed.tda.Pila<T>`
+```bash
+Estructura LIFO (Last In, First Out) construida sobre `Arreglo<T>`.
 
-Es un TDA Arreglo genérico de tamaño fijo.
+**Operaciones:** `apilar()` · `desapilar()` · `verCima()` · `estaVacia()` ·
+`estaLlena()` · `tamanio()`
 
-Se utiliza como estructura auxiliar para almacenar elementos y acceder a ellos mediante índices.
-
-Entre sus operaciones se encuentran:
-
-* `insertar()`
-* `obtener()`
-* `modificar()`
-* `longitud()`
-* `capacidad()`
-* `estaVacio()`
-* `estaLleno()`
-* `intercambiar()`
-
-También se utiliza durante el proceso de mezcla del mazo.
-
-
-### `ed.tda.Pila<T>`
-
-Implementa una estructura **LIFO (Last In, First Out)** utilizando el TDA `Arreglo`.
-
-Sus principales operaciones son:
-
-* `apilar()`
-* `desapilar()`
-* `verCima()`
-* `estaVacia()`
-* `estaLlena()`
-* `tamanio()`
-
-Se utiliza para:
-
+**Se usa para:**
 1. Administrar el mazo de cartas.
-2. Administrar el pozo de cartas de cada jugador.
+2. Administrar el pozo de cartas acumuladas de cada jugador.
+```
+### * `ed.tda.Cola<T>`
+```bash
+Estructura FIFO (First In, First Out) construida sobre `Arreglo<T>`.
+Administra el orden de turno de los 4 jugadores durante las rondas.
 
-
-### `ed.tda.Cola<T>`
-
-Implementa una estructura **FIFO (First In, First Out)** utilizando el TDA `Arreglo`.
-
-Se utiliza para administrar el orden de los cuatro jugadores durante las rondas.
-
-Sus principales operaciones son:
-
-* `encolar()`
-* `desencolar()`
-* `verFrente()`
-* `estaVacia()`
-* `estaLlena()`
-* `tamanio()`
-
-
-### `modelo.Carta`
-
+**Operaciones:** `encolar()` · `desencolar()` · `frente()` · `estaVacia()` ·
+`estaLlena()` · `tamanio()`
+```
+### * `modelo.Carta`
+```bash
 Representa una carta individual del mazo francés.
 
-Contiene:
+**Atributos:** `palo`, `valor` (1 a 13), `disponible` (indica si la carta
+sigue en el mazo o ya fue entregada a un jugador).
 
-```text
-palo
-valor
-disponible
+Expone getters para consultar sus datos y un setter para actualizar su
+disponibilidad.
 ```
+### * `modelo.Mazo`
+```bash
+Representa el mazo francés de 52 cartas, administrado internamente con una
+`Pila<Carta>`.
 
-El valor de la carta se encuentra entre 1 y 13.
-
-El atributo `disponible` permite indicar si la carta continúa disponible en el mazo o si ya fue entregada a un jugador.
-
-Además, permite consultar y modificar el estado de disponibilidad de la carta.
-
-
-### `modelo.Mazo`
-
-Representa el mazo francés de 52 cartas.
-
-Sus principales responsabilidades son:
-
-* Crear las 52 cartas.
-* Mezclarlas aleatoriamente.
-* Administrarlas mediante una Pila.
-* Entregar cartas durante las rondas.
-* Marcar las cartas entregadas como no disponibles.
-* Informar cuántas cartas quedan disponibles.
-
-Para generar las cartas se utilizan los cuatro palos y los valores del 1 al 13.
-
-El barajado se realiza mediante el algoritmo **Fisher-Yates**.
-
-
-### `modelo.Jugador`
-
+**Responsabilidades:**
+- Generar las 52 cartas (4 palos × valores del 1 al 13).
+- Mezclarlas con el algoritmo Fisher-Yates.
+- Entregar cartas durante las rondas y marcarlas como no disponibles.
+- Informar cuántas cartas quedan disponibles.
+```
+### * `modelo.Jugador`
+```bash
 Representa a cada participante de la partida.
 
-Contiene:
+**Atributos:** `nombre`, `apellido`, `edad`, `pozo` (una `Pila<Carta>` con las
+cartas que el jugador va ganando).
 
-```text
-nombre
-apellido
-edad
-pozo
+**Comportamiento:** getters para sus datos, un método para recibir cartas
+(las apila en su pozo) y otro para calcular su puntaje final sumando el
+valor de todas las cartas acumuladas.
 ```
+### * `juego.ControladorJuego`
+```bash
+Controla la lógica principal de la partida.
 
-El `pozo` es una `Pila<Carta>` donde se almacenan las cartas que el jugador obtiene durante las rondas.
+**Responsabilidades:**
+- Ejecutar las 3 rondas, tomando a los jugadores de la Cola y repartiéndoles
+  cartas del Mazo.
+- Comparar los valores de cada ronda y determinar su ganador (o resolver el
+  empate, si lo hay).
+- Entregar las cartas correspondientes al pozo del jugador que corresponda.
+- Al finalizar, calcular los puntajes y determinar al o los ganadores.
+```
+### * `main.Principal`
+```bash
+Punto de entrada del programa.
 
-También permite:
-
-* Consultar sus datos mediante getters.
-* Recibir cartas y almacenarlas en su pozo.
-* Calcular su puntaje final sumando los valores de las cartas acumuladas.
-
-
-### `juego.ControladorJuego`
-
-Es la clase encargada de controlar la lógica principal de la partida.
-
-Se ocupa de:
-
-* Ejecutar las 3 rondas.
-* Obtener los jugadores de la Cola.
-* Solicitar cartas al Mazo.
-* Comparar los valores de las cartas de cada ronda.
-* Determinar el ganador de cada ronda.
-* Entregar las cartas correspondientes al ganador.
-* Resolver los empates.
-* Calcular los puntajes finales.
-* Determinar el jugador o jugadores con mayor puntaje.
-* Mostrar los resultados de la partida.
-
-
-### `main.Principal`
-
-Es el punto de entrada del programa.
-
-Se encarga de:
-
-* Mostrar la bienvenida al juego.
-* Registrar a los cuatro jugadores.
-* Crear el mazo.
-* Crear la Cola de jugadores.
-* Crear el `ControladorJuego`.
-* Preguntar si se desea comenzar la partida.
-* Iniciar la partida.
-* Preguntar si se desea jugar otra partida.
-
-Cuando el usuario decide jugar nuevamente, se crea una **nueva partida desde cero**, con un nuevo mazo y un nuevo registro de jugadores.
+**Flujo:** da la bienvenida, registra a los cuatro jugadores, crea el mazo y
+la Cola de turnos, instancia el `ControladorJuego`, y pregunta si se quiere
+iniciar la partida. Al terminar, pregunta si se desea jugar de nuevo — en
+ese caso arranca una partida completamente nueva, con mazo y jugadores
+recién creados.
+```
 
 ---
 
