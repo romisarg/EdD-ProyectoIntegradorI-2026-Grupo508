@@ -224,5 +224,5 @@ El script compila los archivos `.java` del proyecto y luego ejecuta la clase pri
 ---
 
 <p align="center">
-  ♦️ Proyecto Integrador I — Estructura de Datos · Comisión 5 · UNJU ♦️
+  ♠️ Proyecto Integrador I — Estructura de Datos · Comisión 5 · UNJU ♠️
 </p>
