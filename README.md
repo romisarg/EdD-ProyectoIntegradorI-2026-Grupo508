@@ -1,14 +1,14 @@
-# Proyecto Integrador I - Juego de Cartas
+# Proyecto Integrador I - Juego de Cartas - EdD
 
-**Asignatura:** Estructuras de Datos - Ciclo 2026 - 2do Cuatrimestre
-**Institución:** Facultad de Ingeniería - Universidad Nacional de Jujuy (UNJu)
-**Carreras:** Ingeniería Informática / Licenciatura en Sistemas
+* **Asignatura:** Estructuras de Datos - Ciclo 2026 - 2do Cuatrimestre
+* **Institución:** Facultad de Ingeniería - Universidad Nacional de Jujuy (UNJu)
+* **Carreras:** Ingeniería Informática / Licenciatura en Sistemas
 
 ---
 
-## Descripción General
+## 📝 Descripción del Proyecto
 
-El proyecto consiste en la simulación de un juego de cartas para 4 jugadores que compiten durante **3 rondas**, tomando cartas de un mazo de naipes franceses de 52 cartas mezcladas al azar.
+El trabajo  consiste en la simulación de un juego de cartas para 4 jugadores que compiten durante **3 rondas**, tomando cartas de un mazo de naipes franceses de 52 cartas mezcladas al azar.
 
 En cada ronda, los jugadores reciben una carta y comparan sus valores numéricos. El jugador que obtiene la carta de mayor valor se lleva las cartas de los demás y las guarda en su **pozo acumulador (Pila)**.
 
@@ -16,7 +16,6 @@ En caso de empate en el valor máximo, cada jugador conserva su propia carta.
 
 Al finalizar las 3 rondas, se calcula el puntaje de cada jugador sumando los valores de las cartas acumuladas en su pozo. Gana el jugador o jugadores que obtengan el mayor puntaje.
 
----
 
 ## Mapa conceptual del juego:
 
@@ -86,28 +85,28 @@ Al finalizar las 3 rondas, se calcula el puntaje de cada jugador sumando los val
 
 ---
 
-## Lo Que Ya Está Hecho y Cómo Funciona
+## ⚙️ Lo Que Ya Está Hecho y Cómo Funciona
 
 Actualmente se encuentran implementadas las estructuras de datos y las clases necesarias para el funcionamiento del juego:
 
 ### 1. `ed.tda.Arreglo<T>` (TDA Arreglo Genérico)
-
+```bash
 * **Cómo funciona:** Es una estructura de tamaño fijo que utiliza internamente un arreglo `Object[]` para almacenar elementos genéricos.
 * **Funcionalidad clave:** Ofrece inserción al final (`insertar`), acceso por índice mediante `obtener(i)`, modificación de elementos (`modificar`), verificación de estado (`estaVacio`, `estaLleno`) y el método `intercambiar(i, j)`, utilizado durante el proceso de barajado del mazo.
-
+```
 ### 2. `ed.tda.Pila<T>` (TDA Pila Genérico)
-
+```bash
 * **Cómo funciona:** Implementación propia de una estructura LIFO (Last In, First Out) construida sobre la clase `Arreglo<T>`.
 * **Funcionalidad clave:** Permite apilar elementos en la cima (`apilar`), consultar el elemento superior (`verCima`) y desapilar (`desapilar`).
 * **Uso en el juego:** Se utiliza para representar tanto el **mazo de cartas** como el **pozo acumulador de cada jugador**.
-
+```
 ### 3. `modelo.Carta`
-
+```bash
 * **Cómo funciona:** Modela un naipe individual del mazo francés.
 * **Atributos:** Contiene el `palo` (Trébol, Pica, Corazones, Diamantes), el `valor` (1 a 13) y el estado de la carta (`disponible` o `no disponible`).
-
+```
 ### 4. `modelo.Mazo`
-
+```bash
 * **Cómo funciona:** Encapsula las 52 cartas francesas organizadas internamente mediante una `Pila<Carta>`.
 * **Funcionalidad clave:**
 
@@ -116,8 +115,7 @@ Actualmente se encuentran implementadas las estructuras de datos y las clases ne
   * `sacarCarta()`: Extrae una carta del mazo y cambia su estado a no disponible (`disponible = false`).
   * `tieneCartasDisponibles()`: Permite verificar si quedan cartas en el mazo.
   * `cartasRestantes()`: Indica la cantidad de cartas que quedan en el mazo.
-
----
+```
 
 # Descripción de las clases:
 
@@ -140,7 +138,6 @@ Entre sus operaciones se encuentran:
 
 También se utiliza durante el proceso de mezcla del mazo.
 
----
 
 ## `ed.tda.Pila<T>`
 
@@ -160,7 +157,6 @@ Se utiliza para:
 1. Administrar el mazo de cartas.
 2. Administrar el pozo de cartas de cada jugador.
 
----
 
 ## `ed.tda.Cola<T>`
 
@@ -177,7 +173,6 @@ Sus principales operaciones son:
 * `estaLlena()`
 * `tamanio()`
 
----
 
 ## `modelo.Carta`
 
@@ -197,7 +192,6 @@ El atributo `disponible` permite indicar si la carta continúa disponible en el 
 
 Además, permite consultar y modificar el estado de disponibilidad de la carta.
 
----
 
 ## `modelo.Mazo`
 
@@ -216,7 +210,6 @@ Para generar las cartas se utilizan los cuatro palos y los valores del 1 al 13.
 
 El barajado se realiza mediante el algoritmo **Fisher-Yates**.
 
----
 
 ## `modelo.Jugador`
 
@@ -239,7 +232,6 @@ También permite:
 * Recibir cartas y almacenarlas en su pozo.
 * Calcular su puntaje final sumando los valores de las cartas acumuladas.
 
----
 
 ## `juego.ControladorJuego`
 
@@ -258,7 +250,6 @@ Se ocupa de:
 * Determinar el jugador o jugadores con mayor puntaje.
 * Mostrar los resultados de la partida.
 
----
 
 ## `main.Principal`
 
@@ -279,7 +270,7 @@ Cuando el usuario decide jugar nuevamente, se crea una **nueva partida desde cer
 
 ---
 
-## Relación entre las estructuras y el problema
+## 🔗 Relación entre las estructuras y el juego
 
 Las estructuras de datos se utilizan en situaciones concretas dentro del juego:
 
@@ -312,7 +303,7 @@ Su comportamiento **FIFO (First In, First Out)** permite:
 
 ---
 
-## Estructura de Archivos del Proyecto
+## 📂 Estructura de Archivos del Proyecto
 
 ```text
 juego-cartas/
@@ -338,7 +329,7 @@ juego-cartas/
 
 ---
 
-## Compilación y Ejecución
+## 🚀 Compilación y Ejecución
 
 ### Ejecución en Windows (`run.bat`)
 
@@ -362,7 +353,7 @@ El script compila los archivos `.java` del proyecto y luego ejecuta la clase pri
 
 ---
 
-## Estado actual del proyecto
+## ✅ Estado actual del proyecto
 
 En el funcionamiento principal del juego se encuentra implementado:
 
