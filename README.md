@@ -80,16 +80,16 @@ El trabajo  consiste en la simulación de un juego de cartas para 4 jugadores qu
 
 ## ⚙️ Estructuras y clases utilizadas
 
-### * `ed.tda.Arreglo<T>`
+### * ed.tda.Arreglo<T>
 ```bash
-TDA Arreglo genérico de tamaño fijo. Es la estructura base sobre la que se
-construyen la Pila y la Cola, y también se usa como auxiliar durante el
-mezclado del mazo.
+TDA Arreglo genérico de tamaño fijo.
+Es la estructura base sobre la que se construyen la Pila y la Cola,
+y también se usa como auxiliar durante el mezclado del mazo.
 
 **Operaciones:** `insertar()` · `obtener()` · `modificar()` · `longitud()` ·
 `capacidad()` · `estaVacio()` · `estaLleno()` · `intercambiar()`
 ```
-### * `ed.tda.Pila<T>`
+### * ed.tda.Pila<T>
 ```bash
 Estructura LIFO (Last In, First Out) construida sobre `Arreglo<T>`.
 
@@ -100,7 +100,7 @@ Estructura LIFO (Last In, First Out) construida sobre `Arreglo<T>`.
 1. Administrar el mazo de cartas.
 2. Administrar el pozo de cartas acumuladas de cada jugador.
 ```
-### * `ed.tda.Cola<T>`
+### * ed.tda.Cola<T>
 ```bash
 Estructura FIFO (First In, First Out) construida sobre `Arreglo<T>`.
 Administra el orden de turno de los 4 jugadores durante las rondas.
@@ -108,7 +108,7 @@ Administra el orden de turno de los 4 jugadores durante las rondas.
 **Operaciones:** `encolar()` · `desencolar()` · `frente()` · `estaVacia()` ·
 `estaLlena()` · `tamanio()`
 ```
-### * `modelo.Carta`
+### * modelo.Carta
 ```bash
 Representa una carta individual del mazo francés.
 
@@ -118,7 +118,7 @@ sigue en el mazo o ya fue entregada a un jugador).
 Expone getters para consultar sus datos y un setter para actualizar su
 disponibilidad.
 ```
-### * `modelo.Mazo`
+### * modelo.Mazo
 ```bash
 Representa el mazo francés de 52 cartas, administrado internamente con una
 `Pila<Carta>`.
@@ -129,7 +129,7 @@ Representa el mazo francés de 52 cartas, administrado internamente con una
 - Entregar cartas durante las rondas y marcarlas como no disponibles.
 - Informar cuántas cartas quedan disponibles.
 ```
-### * `modelo.Jugador`
+### * modelo.Jugador
 ```bash
 Representa a cada participante de la partida.
 
@@ -140,7 +140,7 @@ cartas que el jugador va ganando).
 (las apila en su pozo) y otro para calcular su puntaje final sumando el
 valor de todas las cartas acumuladas.
 ```
-### * `juego.ControladorJuego`
+### * juego.ControladorJuego
 ```bash
 Controla la lógica principal de la partida.
 
@@ -152,7 +152,7 @@ Controla la lógica principal de la partida.
 - Entregar las cartas correspondientes al pozo del jugador que corresponda.
 - Al finalizar, calcular los puntajes y determinar al o los ganadores.
 ```
-### * `main.Principal`
+### * main.Principal
 ```bash
 Punto de entrada del programa.
 
