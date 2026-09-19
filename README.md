@@ -6,6 +6,14 @@
 
 ---
 
+<p align="right">
+  <i>"No hay mazo que se mezcle solo, ni programa que se organice sin buenas estructuras."</i>
+  <br>
+  <b>— Grupo 508 - Comisión 5</b>
+</p>
+
+---
+
 ## 📝 Descripción del Proyecto
 
 El trabajo  consiste en la simulación de un juego de cartas para 4 jugadores que compiten durante **3 rondas**, tomando cartas de un mazo de naipes franceses de 52 cartas mezcladas al azar.
@@ -214,10 +222,3 @@ El proyecto cuenta con un script ejecutable para compilar y correr todo en un so
 El script compila los archivos `.java` del proyecto y luego ejecuta la clase principal.
 
 ---
-
-<p align="right">
-  <i>""No hay mazo que se mezcle solo, ni programa que se organice sin buenas estructuras."
-"</i>
-  <br>
-  <b>— Grupo 508 - Comisión 5</b>
-</p>
