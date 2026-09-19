@@ -222,3 +222,7 @@ El proyecto cuenta con un script ejecutable para compilar y correr todo en un so
 El script compila los archivos `.java` del proyecto y luego ejecuta la clase principal.
 
 ---
+
+<p align="center">
+  🃏 Proyecto Integrador I — Estructura de Datos · Comisión 5 · UNJU
+</p>
